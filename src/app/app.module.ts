@@ -47,7 +47,7 @@ import {
   declarations: [
     AppComponent,
     IndexComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
   providers: [CanActivateComponent],
   bootstrap: [AppComponent]

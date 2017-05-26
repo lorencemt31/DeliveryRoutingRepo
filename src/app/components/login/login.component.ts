@@ -21,6 +21,10 @@ import {
 import {
   LocalStorage
 } from '../../shared/local.storage.service';
+import {
+  PostApi
+} from '../../shared/api/post';
+
 
 @Component({
   moduleId: module.id.toString(),
@@ -33,12 +37,17 @@ export class LoginComponent {
     private _router       : Router,
     private _formBuilder  : FormBuilder,
     private _userApi      : UserApi,
-    private _localStorage : LocalStorage
+    private _localStorage : LocalStorage,
+    private _postApi      : PostApi
   ) {
     this._loginForm = this._formBuilder.group({
       'email': ['', [Validators.required, Validators.required, this.emailValidator]],
       'password': ['', [Validators.required]]
     });
+
+   this._postApi.getDecoded().subscribe(response => {
+     console.log(response)
+   })
   }
 
   private _loginForm: any;

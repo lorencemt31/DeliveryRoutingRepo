@@ -44,6 +44,7 @@ module.exports = {
       loaders: ['ts-loader']
     }]
   },
+  watch: true,
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
