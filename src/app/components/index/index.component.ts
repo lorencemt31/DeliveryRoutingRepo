@@ -6,7 +6,9 @@ import {
 interface marker {
   lat: number,
   lng: number,
-  label?: string
+  label?: string,
+  order_id :number,
+  address: string
 }
 
 @Component({
@@ -23,11 +25,15 @@ export class IndexComponent implements OnInit {
   markers: marker[] = [{
     lat: 30.648670261474,
     lng: 76.809466440475,
-    label: 'A'
+    label: 'A',
+    order_id : 110810,
+    address: "Flat 10/1, Skynet Tower, Zirakpur, Punjab, India"
   }, {
     lat: 30.663827186748,
     lng: 76.8583046,
-    label: 'B'
+    label: 'B',
+    order_id : 110767,
+    address: "3290, Second floor, Sector 35 D, Chandigarh, India"
   }]
 
   ngOnInit() {
