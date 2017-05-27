@@ -133,8 +133,8 @@ export class PostApi {
       .done(response => {
         if (!response.error) {
 
-          console.log(response.data.polylines)
-
+          console.log(response.data.polylines[1])
+          // let decodedPolylines = decodePolyline(response.data.polylines);
           observer.next(response);
           observer.complete();
         }
