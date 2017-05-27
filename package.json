@@ -31,6 +31,7 @@
     "@angular/platform-server": "4.0.1",
     "@angular/router": "4.0.1",
     "@angular/upgrade": "4.0.1",
+    "angular2-google-maps": "^0.17.0",
     "bcryptjs": "2.4.3",
     "body-parser": "1.17.1",
     "bootstrap": "3.3.7",
