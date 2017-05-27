@@ -19,17 +19,9 @@ import {
   IndexComponent
 } from './components/index/index.component';
 import {
-  CanActivateComponent
-} from './components/index/index.canactivate.component';
-import {
   PageNotFoundComponent
 } from './components/page.not.found.component';
-import {
-  RegistrationModule
-} from './components/registration/registration.module.component';
-import {
-  loginModuleComponent
-} from './components/login/login.module.component';
+
 /* routing */
 import {
   rootRouting
@@ -39,8 +31,6 @@ import {
   imports: [
     BrowserModule,
     FormsModule,
-    RegistrationModule,
-    loginModuleComponent,
     rootRouting,
   ],
   exports: [],
@@ -49,7 +39,7 @@ import {
     IndexComponent,
     PageNotFoundComponent
   ],
-  providers: [CanActivateComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
