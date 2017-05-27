@@ -10,17 +10,11 @@ export class DeliveryApi {
 
   post() {
     this._app
-    .route(Const.apiVersion + 'post')
+    .route(Const.apiVersion + '/delivery')
     .post((req, res, next) => {
       let _body = req.body;
       
-      this._jwt.decode(req.headers.authorization)
-      .then(response => {
-        
-      })
-      .then(user => {
-        
-      })
+   
 
     })
   }
