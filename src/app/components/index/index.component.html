@@ -2,7 +2,12 @@
     <sebm-google-map-polyline>
         <sebm-google-map-polyline-point *ngFor="let item of markers; let i = index" [latitude]="item.lat" [longitude]="item.lng">
         </sebm-google-map-polyline-point>
-        <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.lat" [longitude]="item.lng" [label]="item.label">
+        <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.lat" [longitude]="item.lng">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.address}} 
+            </sebm-google-map-info-window>
         </sebm-google-map-marker>
     </sebm-google-map-polyline>
 </sebm-google-map>
+
+<!--<sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.lat" [longitude]="item.lng" [label]="item.label">-->
