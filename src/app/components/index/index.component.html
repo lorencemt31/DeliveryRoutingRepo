@@ -1,13 +1,20 @@
 <sebm-google-map [latitude]="latA" [longitude]="lngA" [zoom]="12">
-    <sebm-google-map-polyline>
-        <sebm-google-map-polyline-point *ngFor="let item of markers; let i = index" [latitude]="item.lat" [longitude]="item.lng">
-        </sebm-google-map-polyline-point>
-        <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.lat" [longitude]="item.lng">
-            <sebm-google-map-info-window>
-                <strong>{{item.order_id}}</strong>: {{item.address}} 
-            </sebm-google-map-info-window>
-        </sebm-google-map-marker>
-    </sebm-google-map-polyline>
-</sebm-google-map>
+       <div *ngIf="_show.data">
+            <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude" [label]="item.label">
+                <sebm-google-map-info-window>
+                    <strong>{{item.order_id}}</strong>: {{item.delivery_address}} 
+                </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+       </div>
 
-<!--<sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.lat" [longitude]="item.lng" [label]="item.label">-->
+       <sebm-google-map-polyline>
+        <div *ngIf="_show.routes">
+            <sebm-google-map-polyline-point  *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"></sebm-google-map-polyline-point>
+        </div>
+    </sebm-google-map-polyline>
+    
+</sebm-google-map>
+<br>
+<button class="btn-default" style="border-radius: 10px;" (click)="showData()">Get Data</button>
+<button class="btn-default" style="border-radius: 10px;" (click)="generateRoutes()">Generate Routes</button>
+<button class="btn-default" style="border-radius: 10px;">Save</button>
