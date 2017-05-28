@@ -32,11 +32,16 @@ import {
   DeliveryApi
 } from './shared/api/delivery';
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     rootRouting,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBayzvtJ6Vt4R6gX3iRuFS40nh9rgeKxhY'
+    })
   ],
   exports: [],
   declarations: [
