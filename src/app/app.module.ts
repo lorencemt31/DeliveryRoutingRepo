@@ -27,6 +27,11 @@ import {
   rootRouting
 } from './components/root.route.component';
 
+/* Api */
+import {
+  DeliveryApi
+} from './shared/api/delivery';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -39,10 +44,10 @@ import {
     IndexComponent,
     PageNotFoundComponent
   ],
-  providers: [],
+  providers: [DeliveryApi],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  consstructor() {
+  constructor() {
   }
 }
