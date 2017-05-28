@@ -1,33 +1,16 @@
-// import {
-//   User
-// } from '../model/user';
-// import {
-//   UserApi
-// } from './user/user';
-// import {
-//   PostApi
-// } from './post/post';
+import {
+  DeliveryApi
+} from './delivery/delivery';
 
 export class Api {
   constructor(private _app: any /*express.Application*/) {
-    // this._userApi = new UserApi(this._app);
-    // this._postApi = new PostApi(this._app);
+    this._deliveryApi = new DeliveryApi(this._app);
   }
 
-  // private _userApi : UserApi;
-  // private _postApi : PostApi;
+  private _deliveryApi : DeliveryApi;  
 
-  userApi() {
-    // this._userApi.getOne();
-    // this._userApi.saveOne();
-    // this._userApi.doLogin();
-
-    return this;
-  }
-
-  postApi() {
-    // this._postApi.saveOne();
-    // this._postApi.getList();
+  deliveryApi() {
+    this._deliveryApi.post();
 
     return this;
   }

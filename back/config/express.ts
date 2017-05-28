@@ -61,17 +61,17 @@ export class ExpressConfig {
       }
     });
 
-    this._app.use(function(req, res, next) {
-      res.setTimeout(5000, function() {
-        res.status(408)
-        .send({
-          code    : 0,
-          message : 'Request has timed out.'
-        });
-      });
+    // this._app.use(function(req, res, next) {
+    //   res.setTimeout(5000, function() {
+    //     res.status(408)
+    //     .send({
+    //       code    : 0,
+    //       message : 'Request has timed out.'
+    //     });
+    //   });
 
-      next();
-    });
+    //   next();
+    // });
   }
 
   loadExpressMiddleware() {

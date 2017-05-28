@@ -27,6 +27,11 @@ import {
   rootRouting
 } from './components/root.route.component';
 
+/* Api */
+import {
+  DeliveryApi
+} from './shared/api/delivery';
+
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
@@ -44,10 +49,10 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     IndexComponent,
     PageNotFoundComponent
   ],
-  providers: [],
+  providers: [DeliveryApi],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  consstructor() {
+  constructor() {
   }
 }

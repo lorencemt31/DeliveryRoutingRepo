@@ -60,13 +60,12 @@ export class Server {
 
     /* api here */
     this.api
-    .userApi()
-    .postApi();
+    .deliveryApi()
     /* midlleware here */
     this.expressConfig.loadExpressMiddleware();
 
     /* load mongodb */
-    this.mongo.init();
+    // this.mongo.init();
 
     process.on('unhandledRejection', (reason, p) => {
       new Logger('app.server.ts[api/room][72]', p, 'error');
