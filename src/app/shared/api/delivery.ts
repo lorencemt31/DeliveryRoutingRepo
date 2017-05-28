@@ -1,5 +1,6 @@
 import * as oboe from 'oboe';
 import * as decodePolyline from 'decode-google-map-polyline';
+import * as polyline from 'polyline';
 
 /* angular components */
 import {
@@ -30,8 +31,20 @@ export class DeliveryApi {
             id: 110810,
             lat: 30.648670261474,
             lng: 76.809466440475,
-            name: "110810",
-            duration: 5
+            name: "110810"
+            // duration: 5
+          }, {
+            id: 110767,
+            lat: 30.663827186748,
+            lng: 76.8583046,
+            name: "110767"
+            // duration: 5
+          }, {
+            id: 110743,
+            lat: 30.744933,
+            lng: 76.741402,
+            name: "110743"
+            // duration: 5
           }]
         }
       })
@@ -40,6 +53,7 @@ export class DeliveryApi {
         if (response.code === 1) {
           let responseBody = JSON.parse(response.message);
           let polylines = decodePolyline(responseBody.data.polylines[1]);
+          console.log(responseBody.data)
 
           let data = {
             // solutions: responseBody.data.solutions,

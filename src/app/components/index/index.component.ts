@@ -14,6 +14,11 @@ interface marker {
   delivery_address: string
 }
 
+interface trail {
+  lat: number,
+  lng: number,
+}
+
 @Component({
   selector: 'index',
   templateUrl: './index.component.html',
@@ -25,12 +30,22 @@ export class IndexComponent implements OnInit {
   ) {
     this._show.routes  = false;
     this._show.data    = false;
+    this.getDeliveries(); 
   }
 
   private _show = <any>{};
+  private _decoded = <any>{};  
 
   latA: number = 30.726936890558;
   lngA: number = 76.778821457672;
+
+  trails: trail[] = [{
+    lat: 307.1922,
+    lng: 768.1073
+  },{
+    lat: 307.3173,
+    lng: 767.9882
+  }]   
 
   markers: marker[] = [{
     delivery_latitude: 30.648670261474,
@@ -184,6 +199,8 @@ export class IndexComponent implements OnInit {
     delivery_address: "1232, Himalaya Marg, Sector 22, Chandigarh, India",
   }]
 
+  
+
   showData() {
     this._show.data   = true;
     this._show.routes = false;
@@ -194,8 +211,22 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+  }
+
+  getDeliveries() {
     this._deliveryApi.post().subscribe(response => {
       console.log(response);
+      // this._decoded = response.decodedPolylines;
+      let arry = {};
+      for (let i = 0; i<response.decodedPolylines.length; i++) {
+        arry['lat'] = response.decodedPolylines[i].lat
+        arry['lng'] = response.decodedPolylines[i].lng
+        
+        this._decoded = arry
+      }
+
+      console.log(arry)
     })
   }
 }
