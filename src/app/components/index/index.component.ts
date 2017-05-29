@@ -223,7 +223,7 @@ export class IndexComponent implements OnInit {
           110686,
           110658,
           110702,
-          110681,
+          110618,
           110767
       ],
       'vehicle_b' : [
@@ -255,8 +255,8 @@ export class IndexComponent implements OnInit {
           110676,
           110671,
           110426,
-          110977,
-          110609
+          109977,
+          110669
       ]
   }
 
@@ -270,11 +270,11 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-      var vehicle_a_markers = Array();
-      var vehicle_b_markers = Array();
-      var vehicle_c_markers = Array();
-      var vehicle_d_markers = Array();
-      var vehicle_e_markers = Array();
+      let vehicle_a_markers = Array();
+      let vehicle_b_markers = Array();
+      let vehicle_c_markers = Array();
+      let vehicle_d_markers = Array();
+      let vehicle_e_markers = Array();
 
       this.vehicles.vehicle_a.forEach((o_id) => {
         function findOrder(order){
@@ -284,8 +284,7 @@ export class IndexComponent implements OnInit {
         vehicle_a_markers.push(this.markers.find(findOrder))
 
       })
-      console.log( vehicle_a_markers )
-
+      console.log('vehicle_a',vehicle_a_markers )
 
       this.vehicles.vehicle_b.forEach((o_id) => {
         function findOrder(order){
@@ -295,8 +294,7 @@ export class IndexComponent implements OnInit {
         vehicle_b_markers.push(this.markers.find(findOrder))
 
       })
-      console.log( vehicle_b_markers )
-
+      console.log('vehicle_b', vehicle_b_markers )
 
       this.vehicles.vehicle_c.forEach((o_id) => {
         function findOrder(order){
@@ -306,7 +304,7 @@ export class IndexComponent implements OnInit {
         vehicle_c_markers.push(this.markers.find(findOrder))
 
       })
-      console.log( vehicle_c_markers )
+      console.log('vehicle_c', vehicle_c_markers )
 
 
       this.vehicles.vehicle_d.forEach((o_id) => {
@@ -317,7 +315,7 @@ export class IndexComponent implements OnInit {
         vehicle_d_markers.push(this.markers.find(findOrder))
 
       })
-      console.log( vehicle_d_markers )
+      console.log('vehicle_d', vehicle_d_markers )
 
 
       this.vehicles.vehicle_e.forEach((o_id) => {
@@ -328,20 +326,12 @@ export class IndexComponent implements OnInit {
         vehicle_e_markers.push(this.markers.find(findOrder))
 
       })
-      console.log( vehicle_e_markers )
+      console.log('vehicle_e', vehicle_e_markers )
 
-
-
-
-      // console.log(this.markers.find)
     this._deliveryApi.post().subscribe(response => {
       console.log(response);
     })
   }
-
-  // findVehicle(vehicle_name) {
-  //     return this.vehicles = vehicle_name;
-  // }
 
   markerDragEnd(item: marker, $event: any) {
     // console.log('ITEM', item);
