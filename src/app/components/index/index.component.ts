@@ -14,6 +14,7 @@ interface marker {
   draggable: boolean
 }
 
+interface vehicle{}
 @Component({
   selector: 'index',
   templateUrl: './index.component.html',
@@ -162,7 +163,7 @@ export class IndexComponent implements OnInit {
   }, {
     delivery_latitude: 30.6880572,
     delivery_longitude: 76.723205853442,
-    order_id: 110669,
+    order_id: 110668,
     delivery_address: "Flat no 198 United Co operative society Sector 68, S A S Nagar, Sector 68, Sahibzada Ajit Singh Nagar, India",
     draggable: true
   }, {
@@ -215,6 +216,50 @@ export class IndexComponent implements OnInit {
     draggable: true
   }]
 
+//vehicle array 
+  vehicles = {
+      'vehicle_a' : [ 
+          110668,
+          110686,
+          110658,
+          110702,
+          110681,
+          110767
+      ],
+      'vehicle_b' : [
+          110704,
+          110747,
+          110733,
+          110666,
+          110798,
+          110701
+      ],
+      'vehicle_c' : [
+          110690,
+          110810,
+          110696,
+          110734,
+          110762,
+          110622
+      ],
+      'vehicle_d' : [
+          110659,
+          110743,
+          110678,
+          110730,
+          110757,
+          110732
+      ],
+      'vehicle_e' : [
+          110519,
+          110676,
+          110671,
+          110426,
+          110977,
+          110609
+      ]
+  }
+
   showData() {
     this._show.data = true;
     this._show.routes = false;
@@ -225,10 +270,78 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+      var vehicle_a_markers = Array();
+      var vehicle_b_markers = Array();
+      var vehicle_c_markers = Array();
+      var vehicle_d_markers = Array();
+      var vehicle_e_markers = Array();
+
+      this.vehicles.vehicle_a.forEach((o_id) => {
+        function findOrder(order){
+          return order.order_id === o_id;
+        }
+
+        vehicle_a_markers.push(this.markers.find(findOrder))
+
+      })
+      console.log( vehicle_a_markers )
+
+
+      this.vehicles.vehicle_b.forEach((o_id) => {
+        function findOrder(order){
+          return order.order_id === o_id;
+        }
+
+        vehicle_b_markers.push(this.markers.find(findOrder))
+
+      })
+      console.log( vehicle_b_markers )
+
+
+      this.vehicles.vehicle_c.forEach((o_id) => {
+        function findOrder(order){
+          return order.order_id === o_id;
+        }
+
+        vehicle_c_markers.push(this.markers.find(findOrder))
+
+      })
+      console.log( vehicle_c_markers )
+
+
+      this.vehicles.vehicle_d.forEach((o_id) => {
+        function findOrder(order){
+          return order.order_id === o_id;
+        }
+
+        vehicle_d_markers.push(this.markers.find(findOrder))
+
+      })
+      console.log( vehicle_d_markers )
+
+
+      this.vehicles.vehicle_e.forEach((o_id) => {
+        function findOrder(order){
+          return order.order_id === o_id;
+        }
+
+        vehicle_e_markers.push(this.markers.find(findOrder))
+
+      })
+      console.log( vehicle_e_markers )
+
+
+
+
+      // console.log(this.markers.find)
     this._deliveryApi.post().subscribe(response => {
       console.log(response);
     })
   }
+
+  // findVehicle(vehicle_name) {
+  //     return this.vehicles = vehicle_name;
+  // }
 
   markerDragEnd(item: marker, $event: any) {
     // console.log('ITEM', item);
