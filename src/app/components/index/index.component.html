@@ -1,70 +1,90 @@
 <sebm-google-map [latitude]="initial_latitude" [longitude]="initial_longitude" [zoom]="12">
-    <div *ngIf="_show.data">
-        <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude" [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)">
+    <!--Hide markers by default, show when get data button is clicked-->
+    <div *ngIf="!_show.data">
+        <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)">
             <sebm-google-map-info-window>
                 <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
             </sebm-google-map-info-window>
         </sebm-google-map-marker>
     </div>
-
+    <!--/end Show Default Markers-->
+    <!--Show Markers and routes-->
     <div *ngIf="_show.routes">
+        <!--Vehicle_a-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_a_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'a'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_a-->
+        <!--Vehicle_b-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_b_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'b'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_b-->
+        <!--Vehicle_c-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_c_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'c'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_c-->
+        <!--Vehicle_d-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_d_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'d'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_d-->
+        <!--Vehicle_e-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_e_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'e'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_e-->
+        <!--....................POlylines not yet fixed..................................-->
         <sebm-google-map-polyline>
             <sebm-google-map-polyline-point *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"></sebm-google-map-polyline-point>
         </sebm-google-map-polyline>
     </div>
+    <!--/endShow Markers and routes-->
 </sebm-google-map>
 
 <br>
-
 <button class="btn-default" style="border-radius: 10px;" (click)="showData()">Get Data</button>
 <button class="btn-default" style="border-radius: 10px;" (click)="generateRoutes()">Generate Routes</button>
 <button class="btn-default" style="border-radius: 10px;">Save</button>
 <br>
+
 <div class="column">
     <div class="col-xs-1 text-center">
         <h6>Vehicle_a</h6>
-        <div class="vehicle-id-container vehicle-a">110668</div>
-        <div class="vehicle-id-container vehicle-a">110686</div>
-        <div class="vehicle-id-container vehicle-a">110658</div>
-        <div class="vehicle-id-container vehicle-a">110702</div>
-        <div class="vehicle-id-container vehicle-a">110681</div>
-        <div class="vehicle-id-container vehicle-a">110767</div>
-        
+        <div class="vehicle-id-container vehicle-a" *ngFor="let item of vehicle_a_markers; let i =index"> {{item.order_id}} </div>
     </div>
     <div class="col-xs-1 text-center">
         <h6>Vehicle_b</h6>
-        <div class="vehicle-id-container vehicle-b">110704</div>
-        <div class="vehicle-id-container vehicle-b">110747</div>
-        <div class="vehicle-id-container vehicle-b">110733</div>
-        <div class="vehicle-id-container vehicle-b">110666</div>
-        <div class="vehicle-id-container vehicle-b">110798</div>
-        <div class="vehicle-id-container vehicle-b">110701</div>
+        <div class="vehicle-id-container vehicle-b" *ngFor="let item of vehicle_b_markers; let i =index"> {{item.order_id}} </div>
     </div>
-     <div class="col-xs-1 text-center">
+    <div class="col-xs-1 text-center">
         <h6>Vehicle_c</h6>
-        <div class="vehicle-id-container vehicle-c">110690</div>
-        <div class="vehicle-id-container vehicle-c">110810</div>
-        <div class="vehicle-id-container vehicle-c">110696</div>
-        <div class="vehicle-id-container vehicle-c">110734</div>
-        <div class="vehicle-id-container vehicle-c">110762</div>
-        <div class="vehicle-id-container vehicle-c">110622</div>
+        <div class="vehicle-id-container vehicle-c" *ngFor="let item of vehicle_c_markers; let i =index"> {{item.order_id}} </div>
+
     </div>
     <div class="col-xs-1 text-center">
         <h6>Vehicle_d</h6>
-        <div class="vehicle-id-container vehicle-d">110659</div>
-        <div class="vehicle-id-container vehicle-d">110743</div>
-        <div class="vehicle-id-container vehicle-d">110678</div>
-        <div class="vehicle-id-container vehicle-d">110730</div>
-        <div class="vehicle-id-container vehicle-d">110757</div>
-        <div class="vehicle-id-container vehicle-d">110732</div>
+        <div class="vehicle-id-container vehicle-d" *ngFor="let item of vehicle_d_markers; let i =index"> {{item.order_id}} </div>
     </div>
     <div class="col-xs-1 text-center">
         <h6>Vehicle_e</h6>
-        <div class="vehicle-id-container vehicle-e">110519</div>
-        <div class="vehicle-id-container vehicle-e">110676</div>
-        <div class="vehicle-id-container vehicle-e">110671</div>
-        <div class="vehicle-id-container vehicle-e">110426</div>
-        <div class="vehicle-id-container vehicle-e">110977</div>
-        <div class="vehicle-id-container vehicle-e">110609</div>
+        <div class="vehicle-id-container vehicle-e" *ngFor="let item of vehicle_e_markers; let i =index"> {{item.order_id}} </div>
     </div>
 </div>

@@ -7,14 +7,13 @@ import {
 } from '../../shared/api/delivery';
 
 interface marker {
-  delivery_latitude: number,
-  delivery_longitude: number,
-  order_id: number,
-  delivery_address: string,
-  draggable: boolean
+  delivery_latitude  : number,
+  delivery_longitude : number,
+  order_id           : number,
+  delivery_address   : string,
+  draggable          : boolean
 }
 
-interface vehicle{}
 @Component({
   selector: 'index',
   templateUrl: './index.component.html',
@@ -25,13 +24,13 @@ export class IndexComponent implements OnInit {
     private _deliveryApi: DeliveryApi
   ) {
     this._show.routes = false;
-    this._show.data = false;
+    this._show.data   = true;
   }
 
   private _show = <any>{};
 
   // initial center position for the map
-  initial_latitude: number = 30.726936890558;
+  initial_latitude: number  = 30.726936890558;
   initial_longitude: number = 76.778821457672;
 
   markers: marker[] = [{
@@ -59,8 +58,8 @@ export class IndexComponent implements OnInit {
     delivery_address: "256, Sector 45 a, Chandigarh, India",
     draggable: true
   }, {
-    delivery_latitude: 30.73243011699,
-    delivery_longitude: 76.739011330689,
+    delivery_latitude: 30.711872470975,
+    delivery_longitude: 76.762024407935,
     order_id: 110757,
     delivery_address: "1217B, 2nd floor, Sector 41B, Sector 41, Chandigarh, India, Sector 41, Chandigarh, India",
     draggable: true
@@ -216,121 +215,108 @@ export class IndexComponent implements OnInit {
     draggable: true
   }]
 
-//vehicle array 
+  //vehicle array 
   vehicles = {
-      'vehicle_a' : [ 
-          110668,
-          110686,
-          110658,
-          110702,
-          110618,
-          110767
-      ],
-      'vehicle_b' : [
-          110704,
-          110747,
-          110733,
-          110666,
-          110798,
-          110701
-      ],
-      'vehicle_c' : [
-          110690,
-          110810,
-          110696,
-          110734,
-          110762,
-          110622
-      ],
-      'vehicle_d' : [
-          110659,
-          110743,
-          110678,
-          110730,
-          110757,
-          110732
-      ],
-      'vehicle_e' : [
-          110519,
-          110676,
-          110671,
-          110426,
-          109977,
-          110669
-      ]
+    'vehicle_a': [
+      110668,
+      110686,
+      110658,
+      110702,
+      110618,
+      110767
+    ],
+    'vehicle_b': [
+      110704,
+      110747,
+      110733,
+      110666,
+      110798,
+      110701
+    ],
+    'vehicle_c': [
+      110690,
+      110810,
+      110696,
+      110734,
+      110762,
+      110622
+    ],
+    'vehicle_d': [
+      110659,
+      110743,
+      110678,
+      110730,
+      110757,
+      110732
+    ],
+    'vehicle_e': [
+      110519,
+      110676,
+      110671,
+      110426,
+      109977,
+      110669
+    ]
+  }
+
+  vehicle_a_markers: Array<any> = [];
+  vehicle_b_markers: Array<any> = [];
+  vehicle_c_markers: Array<any> = [];
+  vehicle_d_markers: Array<any> = [];
+  vehicle_e_markers: Array<any> = [];
+
+  ngOnInit() {
+
+    this.vehicles.vehicle_a.forEach((o_id) => {
+      function findOrder(order) {
+        return order.order_id === o_id;
+      }
+      this.vehicle_a_markers.push(this.markers.find(findOrder))
+    })
+
+    this.vehicles.vehicle_b.forEach((o_id) => {
+
+      function findOrder(order) {
+        return order.order_id === o_id;
+      }
+      if (this.markers.find(findOrder) !== undefined) {
+        this.vehicle_b_markers.push(this.markers.find(findOrder))
+      }
+    })
+    this.vehicles.vehicle_c.forEach((o_id) => {
+      function findOrder(order) {
+        return order.order_id === o_id;
+      }
+      this.vehicle_c_markers.push(this.markers.find(findOrder))
+    })
+
+    this.vehicles.vehicle_d.forEach((o_id) => {
+      function findOrder(order) {
+        return order.order_id === o_id;
+      }
+      this.vehicle_d_markers.push(this.markers.find(findOrder))
+    })
+
+    this.vehicles.vehicle_e.forEach((o_id) => {
+      function findOrder(order) {
+        return order.order_id === o_id;
+      }
+      this.vehicle_e_markers.push(this.markers.find(findOrder))
+    })
+
+    this._deliveryApi.post().subscribe(response => {
+      console.log(response);
+    })
   }
 
   showData() {
-    this._show.data = true;
+    this._show.data   = false;
     this._show.routes = false;
   }
 
   generateRoutes() {
     this._show.routes = true;
-  }
-
-  ngOnInit() {
-      let vehicle_a_markers = Array();
-      let vehicle_b_markers = Array();
-      let vehicle_c_markers = Array();
-      let vehicle_d_markers = Array();
-      let vehicle_e_markers = Array();
-
-      this.vehicles.vehicle_a.forEach((o_id) => {
-        function findOrder(order){
-          return order.order_id === o_id;
-        }
-
-        vehicle_a_markers.push(this.markers.find(findOrder))
-
-      })
-      console.log('vehicle_a',vehicle_a_markers )
-
-      this.vehicles.vehicle_b.forEach((o_id) => {
-        function findOrder(order){
-          return order.order_id === o_id;
-        }
-
-        vehicle_b_markers.push(this.markers.find(findOrder))
-
-      })
-      console.log('vehicle_b', vehicle_b_markers )
-
-      this.vehicles.vehicle_c.forEach((o_id) => {
-        function findOrder(order){
-          return order.order_id === o_id;
-        }
-
-        vehicle_c_markers.push(this.markers.find(findOrder))
-
-      })
-      console.log('vehicle_c', vehicle_c_markers )
-
-
-      this.vehicles.vehicle_d.forEach((o_id) => {
-        function findOrder(order){
-          return order.order_id === o_id;
-        }
-
-        vehicle_d_markers.push(this.markers.find(findOrder))
-
-      })
-      console.log('vehicle_d', vehicle_d_markers )
-
-
-      this.vehicles.vehicle_e.forEach((o_id) => {
-        function findOrder(order){
-          return order.order_id === o_id;
-        }
-
-        vehicle_e_markers.push(this.markers.find(findOrder))
-
-      })
-      console.log('vehicle_e', vehicle_e_markers )
-
-    this._deliveryApi.post().subscribe(response => {
-      console.log(response);
-    })
+    this._show.data   = true;
   }
 
   markerDragEnd(item: marker, $event: any) {
@@ -342,7 +328,7 @@ export class IndexComponent implements OnInit {
   updatePolyline(id, lat, lng) {
     for (let i in this.markers) {
       if (this.markers[i].order_id == id) {
-        this.markers[i].delivery_latitude = lat;
+        this.markers[i].delivery_latitude  = lat;
         this.markers[i].delivery_longitude = lng;
         break;
       }
