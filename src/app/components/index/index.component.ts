@@ -265,6 +265,8 @@ export class IndexComponent implements OnInit {
   vehicle_d_markers: Array<any> = [];
   vehicle_e_markers: Array<any> = [];
 
+  polylines: Array<any> = [];
+
   ngOnInit() {
 
     this.vehicles.vehicle_a.forEach((o_id) => {
@@ -304,11 +306,19 @@ export class IndexComponent implements OnInit {
       this.vehicle_e_markers.push(this.markers.find(findOrder))
     })
 
+    let lang;
+    let lat;
     this._deliveryApi.post().subscribe(response => {
-      console.log(response);
+      console.log(response.decodedPolylines);
+      response.decodedPolylines.forEach(element => {
+        lang = element.lng * .10;
+        lat  = element.lat * .10;
+        console.log(lat, lang)
+      });
     })
   }
 
+  
   showData() {
     this._show.data   = false;
     this._show.routes = false;
