@@ -53,7 +53,7 @@
         <!--/Vehicle_e-->
         <!--....................POlylines not yet fixed..................................-->
         <sebm-google-map-polyline>
-            <sebm-google-map-polyline-point *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"></sebm-google-map-polyline-point>
+            <sebm-google-map-polyline-point *ngFor="let item of polylines; let i = index" [latitude]="item.lat * .10" [longitude]="item.lng * .10"></sebm-google-map-polyline-point>
         </sebm-google-map-polyline>
     </div>
     <!--/endShow Markers and routes-->
