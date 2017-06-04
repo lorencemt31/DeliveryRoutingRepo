@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import {
   BrowserModule
-}  from '@angular/platform-browser';
+} from '@angular/platform-browser';
 import {
   FormsModule
 } from '@angular/forms';

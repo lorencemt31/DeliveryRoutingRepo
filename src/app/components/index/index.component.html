@@ -1,20 +1,90 @@
-<sebm-google-map [latitude]="latA" [longitude]="lngA" [zoom]="12">
-       <div *ngIf="_show.data">
-            <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude" >
-                <sebm-google-map-info-window>
-                    <strong>{{item.order_id}}</strong>: {{item.delivery_address}} 
-                </sebm-google-map-info-window>
-            </sebm-google-map-marker>
-       </div>
-
-       <sebm-google-map-polyline>
-        <div *ngIf="_show.routes">
-            <sebm-google-map-polyline-point  *ngFor="let item of trails; let i = index" [latitude]="item.lat" [longitude]="item.lng"></sebm-google-map-polyline-point>
-        </div>
-    </sebm-google-map-polyline>
-    
+<sebm-google-map [latitude]="initial_latitude" [longitude]="initial_longitude" [zoom]="12">
+    <!--Hide markers by default, show when get data button is clicked-->
+    <div *ngIf="!_show.data">
+        <sebm-google-map-marker *ngFor="let item of markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+    </div>
+    <!--/end Show Default Markers-->
+    <!--Show Markers and routes-->
+    <div *ngIf="_show.routes">
+        <!--Vehicle_a-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_a_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'a'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_a-->
+        <!--Vehicle_b-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_b_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'b'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_b-->
+        <!--Vehicle_c-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_c_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'c'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_c-->
+        <!--Vehicle_d-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_d_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'d'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_d-->
+        <!--Vehicle_e-->
+        <sebm-google-map-marker *ngFor="let item of vehicle_e_markers; let i = index" [latitude]="item.delivery_latitude" [longitude]="item.delivery_longitude"
+            [markerDraggable]="item.draggable" (dragEnd)="markerDragEnd(item, $event)" [label]="'e'">
+            <sebm-google-map-info-window>
+                <strong>{{item.order_id}}</strong>: {{item.delivery_address}}
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+        <!--/Vehicle_e-->
+        <!--....................POlylines not yet fixed..................................-->
+        <sebm-google-map-polyline>
+            <sebm-google-map-polyline-point *ngFor="let item of polylines; let i = index" [latitude]="item.lat * .10" [longitude]="item.lng * .10"></sebm-google-map-polyline-point>
+        </sebm-google-map-polyline>
+    </div>
+    <!--/endShow Markers and routes-->
 </sebm-google-map>
+
 <br>
 <button class="btn-default" style="border-radius: 10px;" (click)="showData()">Get Data</button>
 <button class="btn-default" style="border-radius: 10px;" (click)="generateRoutes()">Generate Routes</button>
 <button class="btn-default" style="border-radius: 10px;">Save</button>
+<br>
+
+<div class="column">
+    <div class="col-xs-1 text-center">
+        <h6>Vehicle_a</h6>
+        <div class="vehicle-id-container vehicle-a" *ngFor="let item of vehicle_a_markers; let i =index"> {{item.order_id}} </div>
+    </div>
+    <div class="col-xs-1 text-center">
+        <h6>Vehicle_b</h6>
+        <div class="vehicle-id-container vehicle-b" *ngFor="let item of vehicle_b_markers; let i =index"> {{item.order_id}} </div>
+    </div>
+    <div class="col-xs-1 text-center">
+        <h6>Vehicle_c</h6>
+        <div class="vehicle-id-container vehicle-c" *ngFor="let item of vehicle_c_markers; let i =index"> {{item.order_id}} </div>
+
+    </div>
+    <div class="col-xs-1 text-center">
+        <h6>Vehicle_d</h6>
+        <div class="vehicle-id-container vehicle-d" *ngFor="let item of vehicle_d_markers; let i =index"> {{item.order_id}} </div>
+    </div>
+    <div class="col-xs-1 text-center">
+        <h6>Vehicle_e</h6>
+        <div class="vehicle-id-container vehicle-e" *ngFor="let item of vehicle_e_markers; let i =index"> {{item.order_id}} </div>
+    </div>
+</div>
