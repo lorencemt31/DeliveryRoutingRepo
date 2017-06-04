@@ -52,8 +52,8 @@
         </sebm-google-map-marker>
         <!--/Vehicle_e-->
         <!--....................POlylines not yet fixed..................................-->
-        <sebm-google-map-polyline>
-            <sebm-google-map-polyline-point *ngFor="let item of polylines; let i = index" [latitude]="item.lat * .10" [longitude]="item.lng * .10"></sebm-google-map-polyline-point>
+        <sebm-google-map-polyline *ngFor="let items of polylines; let i = index" [strokeColor]="_strokeColor[i]">
+            <sebm-google-map-polyline-point *ngFor="let item of items;" [latitude]="item.lat * .10" [longitude]="item.lng * .10"></sebm-google-map-polyline-point>
         </sebm-google-map-polyline>
     </div>
     <!--/endShow Markers and routes-->

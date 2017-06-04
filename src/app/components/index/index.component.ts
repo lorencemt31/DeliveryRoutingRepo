@@ -30,11 +30,11 @@ export class IndexComponent implements OnInit {
   ) {
     this._show.routes  = false;
     this._show.data    = false;
-    this.getDeliveries(); 
   }
 
   private _show = <any>{};
   private _decoded = <any>{};  
+  private _strokeColor = ['#b4c695', '#dfc194', '#b498ca', '#fffd79', '#98c4c4'];    
 
   // initial center position for the map
   initial_latitude: number  = 30.726936890558;
@@ -283,7 +283,6 @@ export class IndexComponent implements OnInit {
   polylines: Array<any> = [];
 
   ngOnInit() {
-
     this.vehicles.vehicle_a.forEach((o_id) => {
       function findOrder(order) {
         return order.order_id === o_id;
@@ -292,7 +291,6 @@ export class IndexComponent implements OnInit {
     })
 
     this.vehicles.vehicle_b.forEach((o_id) => {
-
       function findOrder(order) {
         return order.order_id === o_id;
       }
@@ -300,6 +298,7 @@ export class IndexComponent implements OnInit {
         this.vehicle_b_markers.push(this.markers.find(findOrder))
       }
     })
+
     this.vehicles.vehicle_c.forEach((o_id) => {
       function findOrder(order) {
         return order.order_id === o_id;
@@ -324,6 +323,7 @@ export class IndexComponent implements OnInit {
     let lang;
     let lat;
     this._deliveryApi.post().subscribe(response => {
+      console.log('decoded', response.decodedPolylines)
       this.polylines = response.decodedPolylines;
     })
   }
@@ -336,23 +336,6 @@ export class IndexComponent implements OnInit {
   generateRoutes() {
     this._show.routes = true;
     this._show.data   = true;
-  }
-
-
-  getDeliveries() {
-    this._deliveryApi.post().subscribe(response => {
-      console.log(response);
-      // this._decoded = response.decodedPolylines;
-      let arry = {};
-      for (let i = 0; i<response.decodedPolylines.length; i++) {
-        arry['lat'] = response.decodedPolylines[i].lat
-        arry['lng'] = response.decodedPolylines[i].lng
-        
-        this._decoded = arry
-      }
-
-      console.log(arry)
-    })
   }
 
   markerDragEnd(item: marker, $event: any) {
